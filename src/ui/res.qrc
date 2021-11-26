@@ -1,0 +1,30 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/autoscroll.ico</file>
+        <file>res/bookmark.ico</file>
+        <file>res/clear.ico</file>
+        <file>res/color.ico</file>
+        <file>res/F.ico</file>
+        <file>res/filter.ico</file>
+        <file>res/find.ico</file>
+        <file>res/K.ico</file>
+        <file>res/locate.ico</file>
+        <file>res/main.ico</file>
+        <file>res/N.ico</file>
+        <file>res/O.ico</file>
+        <file>res/open.ico</file>
+        <file>res/P.ico</file>
+        <file>res/R.ico</file>
+        <file>res/save.ico</file>
+        <file>res/setting.ico</file>
+        <file>res/start.ico</file>
+        <file>res/U.ico</file>
+        <file>res/add.svg</file>
+        <file>res/list.svg</file>
+        <file>res/off.svg</file>
+        <file>res/on.svg</file>
+        <file>res/down.svg</file>
+		<file>res/qss/default.css</file>
+        <file>res/language/zh_cn.qm</file>
+    </qresource>
+</RCC>

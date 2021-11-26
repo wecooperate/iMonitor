@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>UIMain</class>
+ <widget class="QMainWindow" name="UIMain">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1200</width>
+    <height>650</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>iMonitor</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="res.qrc">
+    <normaloff>:/res/main.ico</normaloff>:/res/main.ico</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>true</bool>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="action_Open"/>
+    <addaction name="action_Save"/>
+    <addaction name="separator"/>
+    <addaction name="action_Setting"/>
+    <addaction name="separator"/>
+    <addaction name="action_Exit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="action_AutoScroll"/>
+    <addaction name="action_Clear"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+    <addaction name="action_Locate"/>
+    <addaction name="separator"/>
+    <addaction name="action_UniqueMessage"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="action_About"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>MainBar</string>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="floatable">
+    <bool>true</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_Open"/>
+   <addaction name="action_Save"/>
+   <addaction name="separator"/>
+   <addaction name="action_Monitor"/>
+   <addaction name="separator"/>
+   <addaction name="action_AutoScroll"/>
+   <addaction name="separator"/>
+   <addaction name="action_Clear"/>
+   <addaction name="separator"/>
+   <addaction name="action_Locate"/>
+   <addaction name="separator"/>
+   <addaction name="action_Colorful"/>
+   <addaction name="separator"/>
+   <addaction name="action_Setting"/>
+   <addaction name="separator"/>
+  </widget>
+  <widget class="QToolBar" name="toolBarFilter">
+   <property name="windowTitle">
+    <string>FilterBar</string>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomToolBarArea|Qt::TopToolBarArea</set>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <action name="action_Open">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/res/open.ico</normaloff>:/res/open.ico</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_Save">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/res/save.ico</normaloff>:/res/save.ico</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_Monitor">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/res/start.ico</normaloff>:/res/start.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Monitor</string>
+   </property>
+  </action>
+  <action name="action_AutoScroll">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/res/autoscroll.ico</normaloff>:/res/autoscroll.ico</iconset>
+   </property>
+   <property name="text">
+    <string>AutoScroll</string>
+   </property>
+  </action>
+  <action name="action_Clear">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/res/clear.ico</normaloff>:/res/clear.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Clear</string>
+   </property>
+   <property name="toolTip">
+    <string>Clear</string>
+   </property>
+  </action>
+  <action name="action_Locate">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/res/locate.ico</normaloff>:/res/locate.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Locate</string>
+   </property>
+  </action>
+  <action name="action_Filter">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/res/filter.ico</normaloff>:/res/filter.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Filter</string>
+   </property>
+  </action>
+  <action name="action_SwitchProcess">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/res/P.ico</normaloff>:/res/P.ico</iconset>
+   </property>
+   <property name="text">
+    <string>SwitchProcess</string>
+   </property>
+  </action>
+  <action name="action_SwitchFile">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/res/F.ico</normaloff>:/res/F.ico</iconset>
+   </property>
+   <property name="text">
+    <string>SwitchFile</string>
+   </property>
+  </action>
+  <action name="action_SwitchRegistry">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/res/R.ico</normaloff>:/res/R.ico</iconset>
+   </property>
+   <property name="text">
+    <string>SwitchRegistry</string>
+   </property>
+  </action>
+  <action name="action_SwitchNetwork">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/res/N.ico</normaloff>:/res/N.ico</iconset>
+   </property>
+   <property name="text">
+    <string>SwitchNetwork</string>
+   </property>
+  </action>
+  <action name="action_Setting">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/res/setting.ico</normaloff>:/res/setting.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Setting</string>
+   </property>
+  </action>
+  <action name="action_Colorful">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/res/color.ico</normaloff>:/res/color.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Colorful</string>
+   </property>
+   <property name="toolTip">
+    <string>Colorful</string>
+   </property>
+  </action>
+  <action name="action_Exit">
+   <property name="text">
+    <string>&amp;Exit</string>
+   </property>
+   <property name="toolTip">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="action_About">
+   <property name="text">
+    <string>&amp;About</string>
+   </property>
+  </action>
+  <action name="action_UniqueMessage">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;UniqueMessage</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

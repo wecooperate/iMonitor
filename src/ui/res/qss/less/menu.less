@@ -1,0 +1,20 @@
+@import "color";
+
+QMenuBar::item {
+  color: @color_text_normal;
+  background-color: @color_backgroup_normal;
+}
+
+QMenu,
+QMenuBar,
+QMenu:disabled,
+QMenuBar:disabled {
+  color: @color_text_normal;
+  background-color: @color_backgroup_normal;
+  border: 1px solid @color_border;
+}
+
+QMenu::item:selected,
+QMenuBar::item:selected {
+  background: @color_backgroup_menu_selected;
+}

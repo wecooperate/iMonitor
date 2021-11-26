@@ -1,0 +1,41 @@
+@color_text_normal: #141414;
+@color_text_selected: #141414;
+
+@color_border: #eeeef2;
+@color_border_child: #bebebe;
+
+@color_backgroup_normal: #eeeef2;
+@color_backgroup_disabled: #eeeef2;
+@color_backgroup_text: #ffffff;
+@color_backgroup_input_selected: #eeeef2;
+@color_backgroup_menu_selected: #abcaf3;
+@color_backgroup_selected: #abcaf3;
+
+@color_backgroup_lineargradient_start: #f7f7f7;
+@color_backgroup_lineargradient_end: #eeeef2;
+
+@color_backgroup_lineargradient_hover_start: #eeeef2;
+@color_backgroup_lineargradient_hover_end: #dddddd;
+
+@color_backgroup_lineargradient_press_start: #ffffff;
+@color_backgroup_lineargradient_press_end: #eeeef2;
+
+@color_backgroup_lineargradient_pushed_start: #ffffff;
+@color_backgroup_lineargradient_pushed_end: #eeeef2;
+
+.backgroup_lineargradient(@color_start, @color_end) {
+  @backgroup_qlineargradient: %(
+    ~"qlineargradient(
+      spread: pad,
+      x1: 0, 
+      y1: 0,  
+      x2: 0,  
+      y2: 1,  
+      stop: 0 %s, 
+      stop: 1 %s 
+      )",
+    @color_start,
+    @color_end
+  );
+  background: @backgroup_qlineargradient;
+}

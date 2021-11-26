@@ -1,0 +1,74 @@
+#include <winres.h>
+
+#ifndef VI_FILETYPE
+#define	VI_FILETYPE					VFT_DLL
+#endif
+
+#ifndef VI_FILEVERSION
+#define VI_FILEVERSION				1,0,1,0
+#endif
+
+#ifndef VI_PRODUCTVERSION
+#define VI_PRODUCTVERSION			VI_FILEVERSION
+#endif
+
+#ifndef VI_FILEVERSION_STRING
+#define VI_FILEVERSION_STRING		"1.0.1.0"
+#endif
+
+#ifndef VI_PRODUCTVERSION_STRING
+#define VI_PRODUCTVERSION_STRING	VI_FILEVERSION_STRING
+#endif
+
+#ifndef VI_COMPANYNAME
+#define VI_COMPANYNAME				""
+#endif
+
+#ifndef VI_FILEDESCRIPTION
+#define VI_FILEDESCRIPTION			""
+#endif
+
+#ifndef VI_FILENAME
+#define VI_FILENAME					""
+#endif
+
+#ifndef VI_COPYRIGHT
+#define VI_COPYRIGHT				"https://github.com/wecooperate"
+#endif
+
+#ifndef VI_PRODUCTNAME
+#define VI_PRODUCTNAME				""
+#endif
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION		VI_FILEVERSION
+PRODUCTVERSION	VI_PRODUCTVERSION
+FILEFLAGSMASK	0x3FL
+#ifdef _DEBUG
+FILEFLAGS		VS_FF_DEBUG
+#else
+FILEFLAGS		0x0L	
+#endif
+FILEOS			VOS_NT_WINDOWS32 
+FILETYPE		VI_FILETYPE
+FILESUBTYPE		0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+	    BLOCK "080404B0"
+	    BEGIN
+            VALUE "CompanyName",		VI_COMPANYNAME
+            VALUE "FileDescription",	VI_FILEDESCRIPTION
+            VALUE "InternalName",		VI_FILENAME
+            VALUE "LegalCopyright",		VI_COPYRIGHT
+            VALUE "OriginalFilename",	VI_FILENAME
+            VALUE "ProductName",		VI_PRODUCTNAME
+			VALUE "FileVersion",		VI_FILEVERSION_STRING
+			VALUE "ProductVersion",		VI_PRODUCTVERSION_STRING
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0804, 0x04B0
+    END
+END

@@ -1,0 +1,12 @@
+.vs
+tmp
+Debug
+Release
+bin
+lib
+build
+buildsdk
+bin64
+build64
+
+*.qm
