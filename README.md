@@ -1,6 +1,6 @@
 English|  [简体中文](./README-zh_CN.md) 
 
-iMonitor (Terminal Behavior Analysis System - Then **Open Source Procmon**) is a terminal behavior monitoring and analysis software based on [iMonitorSDK](https://github.com/wecooperate/iMonitorSDK).
+iMonitor (Endpoint Behavior Analysis System - Then **Open Source Procmon**) is a endpoint behavior monitoring and analysis software based on [iMonitorSDK](https://github.com/wecooperate/iMonitorSDK).
 
 Provides monitoring of system behaviors such as processes, files, registry, and networks. Support extensions and scripts, you can easily customize and add more functions. It can be used for virus analysis, software reverse engineering, intrusion detection, EDR, etc.
 
