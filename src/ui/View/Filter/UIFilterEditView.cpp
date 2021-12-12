@@ -81,7 +81,9 @@ UIFilterEditView::UIFilterEditView(QWidget* parent)
 	LoadRules();
 
 	ui->filterBar->SetDelegate([this](const cxRuleMatcher& matcher, bool include) {
-		InsertRule(std::make_shared<UISimpleRule>(matcher));
+		auto rule = std::make_shared<UISimpleRule>(matcher);
+		rule->m_IsInclude = include;
+		InsertRule(rule);
 		m_Changed = true;
 	});
 

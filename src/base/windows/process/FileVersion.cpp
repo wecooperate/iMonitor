@@ -102,13 +102,9 @@ HRESULT cxFileVersion::Reset(LPCTSTR Path, ULONG Flags)
 	UINT len = 0;
 	PVOID info = NULL;
 
-	if (!VerQueryValue(m_Version, _T("\\VarFileInfo\\Translation"), &info, &len) || len != sizeof(ULONG)) {
-		delete[](char*) m_Version;
-		m_Version = NULL;
-		m_VersionSize = 0;
+	if (VerQueryValue(m_Version, _T("\\VarFileInfo\\Translation"), &info, &len) && len == sizeof(ULONG)) {
+		m_Translation = *(PULONG)info;
 	}
-
-	m_Translation = *(PULONG)info;
 
 	return S_OK;
 }
