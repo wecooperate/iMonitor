@@ -79,8 +79,8 @@ interface __declspec (uuid("51237525-2811-4BE2-A6A3-D8889E0D0CA0")) IMonitorMana
 	virtual HRESULT			Control				(PVOID Data, ULONG Length, PVOID OutData = NULL, ULONG OutLength = 0, PULONG ReturnLength = NULL) = 0;
 	virtual HRESULT			Stop				(void) = 0;
 
-	virtual	HRESULT			CreateRuleService	(LPCWSTR Path, IRuleService** Service) = 0;
-	virtual HRESULT			CreateAgentService	(ULONG MaxThread, IAgentService** Service) = 0;
+	virtual	HRESULT			CreateRuleEngine	(LPCWSTR Path, IMonitorRuleEngine** Engine) = 0;
+	virtual HRESULT			CreateAgentEngine	(ULONG MaxThread, IMonitorAgentEngine** Engine) = 0;
 };
 //******************************************************************************
 //
@@ -141,32 +141,32 @@ public:
 		return m_Monitor->Control((PVOID)&config, sizeof(config));
 	}
 
-	CComPtr<IRuleService> CreateRuleService(LPCWSTR Path)
+	CComPtr<IMonitorRuleEngine> CreateRuleEngine(LPCWSTR Path)
 	{
 		if (!m_Monitor)
 			return NULL;
 
-		CComPtr<IRuleService> service;
-		HRESULT hr = m_Monitor->CreateRuleService(Path, &service);
+		CComPtr<IMonitorRuleEngine> engine;
+		HRESULT hr = m_Monitor->CreateRuleEngine(Path, &engine);
 
 		if (hr != S_OK)
 			return NULL;
 
-		return service;
+		return engine;
 	}
 
-	CComPtr<IAgentService> CreateAgentService(ULONG MaxThread = 1)
+	CComPtr<IMonitorAgentEngine> CreateAgentEngine(ULONG MaxThread = 1)
 	{
 		if (!m_Monitor)
 			return NULL;
 
-		CComPtr<IAgentService> service;
-		HRESULT hr = m_Monitor->CreateAgentService(MaxThread, &service);
+		CComPtr<IMonitorAgentEngine> engine;
+		HRESULT hr = m_Monitor->CreateAgentEngine(MaxThread, &engine);
 
 		if (hr != S_OK)
 			return NULL;
 
-		return service;
+		return engine;
 	}
 
 protected:

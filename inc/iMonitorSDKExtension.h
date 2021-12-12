@@ -12,24 +12,32 @@
 //******************************************************************************
 interface IMonitorMessage;
 //******************************************************************************
-interface IRuleCallback
+interface IMonitorRuleCallback
 {
 	enum emMatchStatus {
 		emMatchStatusBreak,
 		emMatchStatusContinue,
 	};
 
+	struct MatchResult {
+		ULONG				Action;
+		const char*			ActionParam;
+		const char*			GroupName;
+		const char*			RuleName;
+	};
+
 	virtual void			OnBeginMatch		(IMonitorMessage* Message) {}
 	virtual void			OnFinishMatch		(IMonitorMessage* Message) {}
-	virtual emMatchStatus	OnMatch				(IMonitorMessage* Message, const char* GroupName, const char* RuleName, ULONG Action, const char* ActionParam) = 0;
+	virtual emMatchStatus	OnMatch				(IMonitorMessage* Message, const MatchResult& Result) = 0;
 };
 //******************************************************************************
-interface __declspec(uuid("51237525-2811-4BE2-A6A3-D8889E0D0CA1")) IRuleService : public IUnknown
+interface __declspec(uuid("51237525-2811-4BE2-A6A3-D8889E0D0CA1")) IMonitorRuleEngine : public IUnknown
 {
-	virtual void			Match				(IMonitorMessage* Message, IRuleCallback* Callback) = 0;
+	virtual void			Match				(IMonitorMessage* Message, IMonitorRuleCallback* Callback) = 0;
+	virtual void			EnumAffectedMessage	(void(*Callback)(ULONG Type, void* Context), void* Context) = 0;
 };
 //******************************************************************************
-interface IAgentChannel
+interface IMonitorAgentChannel
 {
 	struct Address {
 		ULONG				IP;
@@ -60,29 +68,29 @@ interface IAgentChannel
 	virtual void			Close				(void) = 0;
 };
 //******************************************************************************
-interface IAgentCallback
+interface IMonitorAgentCallback
 {
-	virtual void			OnCreate			(IAgentChannel* Channel) {}
+	virtual void			OnCreate			(IMonitorAgentChannel* Channel) {}
 
-	virtual void			OnLocalConnect		(IAgentChannel* Channel) {}
-	virtual bool			OnLocalSSLHello		(IAgentChannel* Channel, const char* ServerName) { return true; }
-	virtual void			OnLocalReceive		(IAgentChannel* Channel, const char* Data, size_t Length) {}
-	virtual void			OnLocalError		(IAgentChannel* Channel, const char* Error) {}
-	virtual void			OnLocalDisconnect	(IAgentChannel* Channel) {}
+	virtual void			OnLocalConnect		(IMonitorAgentChannel* Channel) {}
+	virtual bool			OnLocalSSLHello		(IMonitorAgentChannel* Channel, const char* ServerName) { return true; }
+	virtual void			OnLocalReceive		(IMonitorAgentChannel* Channel, const char* Data, size_t Length) {}
+	virtual void			OnLocalError		(IMonitorAgentChannel* Channel, const char* Error) {}
+	virtual void			OnLocalDisconnect	(IMonitorAgentChannel* Channel) {}
 
-	virtual bool			OnRemotePreConnect	(IAgentChannel* Channel) { return true; }
-	virtual bool			OnRemoteSSLVerify	(IAgentChannel* Channel, bool PreVerified) { return PreVerified; }
-	virtual void			OnRemoteConnect		(IAgentChannel* Channel) {}
-	virtual void			OnRemoteReceive		(IAgentChannel* Channel, const char* Data, size_t Length) {}
-	virtual void			OnRemoteError		(IAgentChannel* Channel, const char* Error) {}
-	virtual void			OnRemoteDisconnect	(IAgentChannel* Channel) {}
+	virtual bool			OnRemotePreConnect	(IMonitorAgentChannel* Channel) { return true; }
+	virtual bool			OnRemoteSSLVerify	(IMonitorAgentChannel* Channel, bool PreVerified) { return PreVerified; }
+	virtual void			OnRemoteConnect		(IMonitorAgentChannel* Channel) {}
+	virtual void			OnRemoteReceive		(IMonitorAgentChannel* Channel, const char* Data, size_t Length) {}
+	virtual void			OnRemoteError		(IMonitorAgentChannel* Channel, const char* Error) {}
+	virtual void			OnRemoteDisconnect	(IMonitorAgentChannel* Channel) {}
 
-	virtual void			OnClose				(IAgentChannel* Channel) {}
+	virtual void			OnClose				(IMonitorAgentChannel* Channel) {}
 };
 //******************************************************************************
-interface __declspec (uuid("51237525-2811-4BE2-A6A3-D8889E0D0CA0")) IAgentService : public IUnknown
+interface __declspec (uuid("51237525-2811-4BE2-A6A3-D8889E0D0CA0")) IMonitorAgentEngine : public IUnknown
 {
-	virtual bool			Agent				(IMonitorMessage* Message, IAgentCallback* Callback, bool SSL = false) = 0;
+	virtual bool			Agent				(IMonitorMessage* Message, IMonitorAgentCallback* Callback, bool SSL = false) = 0;
 };
 //******************************************************************************
 #endif

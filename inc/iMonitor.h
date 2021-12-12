@@ -10,7 +10,7 @@
 //******************************************************************************
 // clang-format off
 //******************************************************************************
-#define MONITOR_VERSION                       1010
+#define MONITOR_VERSION                       1020
 #define MONITOR_MAX_BUFFER                    260
 //******************************************************************************
 #ifndef BIT
@@ -224,6 +224,8 @@ enum emMSGField
     emMSGFieldCurrentThreadId,
     emMSGFieldTime,
     emMSGFieldDetail,
+    emMSGFieldModifiable,
+    emMSGFieldModified,
 
     //
     // ÓÃ»§À©Õ¹×Ö¶Î
@@ -251,8 +253,10 @@ struct cxMSGHeader
     ULONG                Fields;
     ULONG                CurrentProcessId;
     ULONG                CurrentThreadId;
-    ULONG                RuleId;
-    ULONG                Reserved;
+    ULONG                Modifiable:1;
+    ULONG                Modified:1;
+    ULONG                Reserved0:30;
+    ULONG                Reserved1;
     ULONGLONG            Time;
 
     //
@@ -330,6 +334,8 @@ enum
 {
     emUserSetGlobalConfig = emMSGUserControl + 1,
     emUserGetGlobalConfig,
+    emUserSetSessionConfig,
+    emUserGetSessionConfig,
     emUserSetMSGConfig,
     emUserGetMSGConfig,
     emUserEnableProtect,
@@ -342,18 +348,14 @@ enum
 //******************************************************************************
 struct cxUserGlobalConfig
 {
-    enum emSwitch {
-        emSwitchIncludeVS                      = BIT(0),
-        emSwitchIncludeSelf                    = BIT(1),
-    };
-
     union {
         struct {
-            ULONG        Switch;
+            ULONG        SwitchIncludeVS:1;
+            ULONG        SwitchIncludeSelf:1;
+            ULONG        SwitchOther:30;
             ULONG        LogLevel;
             ULONG        MaxCallstack;
             ULONG        MaxBinaryData;
-            ULONG        MSGTimeoutMS;
         };
 
         ULONG            Data[32];
@@ -363,20 +365,35 @@ struct cxUserGlobalConfig
     {
         memset(Data, 0, sizeof(Data));
 
-        Switch = emSwitchIncludeVS;
         MaxCallstack = 64;
         MaxBinaryData = 4096;
+        SwitchIncludeVS = TRUE;
+    }
+};
+//******************************************************************************
+struct cxUserSessionConfig
+{
+    union {
+		struct {
+           ULONG        MSGTimeoutMS;
+           ULONG        MSGTimeoutProtectCount;
+           ULONG        MSGTimeoutProtectTimeMS;
+           ULONG        FilterProcessOpenOnlyModifiable:1;
+           ULONG        FilterThreadOpenOnlyModifiable:1;
+           ULONG        FilterFileCreateOnlyModifiable:1;
+           ULONG        FilterFileCloseOnlyModified:1;
+           ULONG        FilterRegOpenOnlyModifiable:1;
+           ULONG        FilterOther:27;
+        };
+
+        ULONG           Data[32];
+	};
+
+    cxUserSessionConfig()
+    {
+        memset(Data, 0, sizeof(Data));
+        
         MSGTimeoutMS = 5000;
-    }
-
-    bool IsIncludeVS(void)
-    {
-        return FlagOn(Switch, emSwitchIncludeVS);
-    }
-
-    bool IsIncludeSelf(void)
-    {
-        return FlagOn(Switch, emSwitchIncludeSelf);
     }
 };
 //******************************************************************************
@@ -411,6 +428,8 @@ struct cxUserProtectItem
 //******************************************************************************
 typedef cxMSGUser<emUserSetGlobalConfig, cxUserGlobalConfig> cxMSGUserSetGlobalConfig;
 typedef cxMSGUser<emUserGetGlobalConfig, cxUserGlobalConfig> cxMSGUserGetGlobalConfig;
+typedef cxMSGUser<emUserSetSessionConfig, cxUserSessionConfig> cxMSGUserSetSessionConfig;
+typedef cxMSGUser<emUserGetSessionConfig, cxUserSessionConfig> cxMSGUserGetSessionConfig;
 typedef cxMSGUser<emUserSetMSGConfig, cxUserMSGConfig> cxMSGUserSetMSGConfig;
 typedef cxMSGUser<emUserGetMSGConfig, cxUserMSGConfig> cxMSGUserGetMSGConfig;
 typedef cxMSGUser<emUserEnableProtect> cxMSGUserEnableProtect;
