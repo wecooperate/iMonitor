@@ -10,7 +10,7 @@
 //******************************************************************************
 // clang-format off
 //******************************************************************************
-#define MONITOR_VERSION                       1020
+#define MONITOR_VERSION                       1040
 #define MONITOR_MAX_BUFFER                    260
 //******************************************************************************
 #ifndef BIT
@@ -378,6 +378,7 @@ struct cxUserSessionConfig
            ULONG        MSGTimeoutMS;
            ULONG        MSGTimeoutProtectCount;
            ULONG        MSGTimeoutProtectTimeMS;
+           ULONG        MSGPostTimeoutMS;
            ULONG        FilterProcessOpenOnlyModifiable:1;
            ULONG        FilterThreadOpenOnlyModifiable:1;
            ULONG        FilterFileCreateOnlyModifiable:1;
@@ -394,6 +395,7 @@ struct cxUserSessionConfig
         memset(Data, 0, sizeof(Data));
         
         MSGTimeoutMS = 5000;
+        MSGPostTimeoutMS = 50000;
     }
 };
 //******************************************************************************

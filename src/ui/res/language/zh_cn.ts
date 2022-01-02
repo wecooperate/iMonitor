@@ -235,12 +235,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../UIMain.cpp" line="151"/>
+        <location filename="../../UIMain.cpp" line="158"/>
         <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../UIMain.cpp" line="153"/>
+        <location filename="../../UIMain.cpp" line="160"/>
         <source>iMonitor Files (*.imt)</source>
         <translation type="unfinished"></translation>
     </message>

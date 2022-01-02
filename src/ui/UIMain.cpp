@@ -49,7 +49,14 @@ UIMain::UIMain(QWidget* parent)
 		if (err.Message) {
 			title = err.Message;
 		}
-		QMessageBox::critical(this, title, QStringFrom(StringFromError(err.Error, 0)), QMessageBox::Ok);
+		CString err_info = StringFromError(err.Error, 0);
+		if (err.Error == HRESULT_FROM_WIN32(ERROR_INVALID_IMAGE_HASH)) {
+			err_info = _T("驱动加载需要签名，测试前请先签名。\n");
+			err_info += _T("如果没有正式的签名证书，可以使用测试签名，详细参考：\n");
+			err_info += _T("1. 开启测试模式： https://docs.microsoft.com/zh-cn/windows-hardware/drivers/install/the-testsigning-boot-configuration-option\n");
+			err_info += _T("2. 对启动进行签名： https://docs.microsoft.com/zh-cn/windows-hardware/drivers/install/test-signing-a-driver-file\n");
+		}
+		QMessageBox::critical(this, title, QStringFrom(err_info), QMessageBox::Ok);
 		ExitProcess(err.Error);
 	});
 

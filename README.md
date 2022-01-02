@@ -67,4 +67,4 @@ Win11
 
 
 
-如有业务代理、商业合作、功能定制等需求，欢迎 [联系我们](mailto://iMonitor@qq.com)mailto://iMonitor@qq.com)
+**目前创业启动资金筹备中，承接终端安全相关的各类需求，有任何商业合作、功能定制的欢迎 [联系我们](mailto://iMonitor@qq.com)**

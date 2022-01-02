@@ -59,6 +59,9 @@ interface IMonitorMessage
 	virtual bool			SetBlock			(void) = 0;
 	virtual bool			SetGrantedAccess	(ULONG Access) = 0;
 	virtual bool			SetIPRedirect		(ULONG IP, USHORT Port, ULONG ProcessId = ::GetCurrentProcessId()) = 0;
+	virtual bool			SetTerminateProcess	(void) = 0;
+	virtual bool			SetTerminateThread	(void) = 0;
+	virtual bool			SetInjectDll		(LPCWSTR Path) = 0;
 	virtual bool			SetFileRedirect		(LPCWSTR Path) = 0;
 };
 //******************************************************************************
