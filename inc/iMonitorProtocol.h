@@ -16,9 +16,9 @@ public:
 	auto CurrentProcessPath() { return GetString(emMSGFieldCurrentProcessPath); };
 	auto CurrentProcessCommandline() { return GetString(emMSGFieldCurrentProcessCommandline); };
 	
-	bool IsMatchCurrentProcessName(LPCWSTR Pattern) { return IsMatch(emMSGFieldCurrentProcessName, Pattern); }
-	bool IsMatchCurrentProcessPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldCurrentProcessPath, Pattern); }
-	bool IsMatchCurrentProcessCommandline(LPCWSTR Pattern) { return IsMatch(emMSGFieldCurrentProcessCommandline, Pattern); }
+	bool IsMatchCurrentProcessName(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldCurrentProcessName, Pattern, IgnoreCase); }
+	bool IsMatchCurrentProcessPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldCurrentProcessPath, Pattern, IgnoreCase); }
+	bool IsMatchCurrentProcessCommandline(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldCurrentProcessCommandline, Pattern, IgnoreCase); }
 
 protected:
 	LPCWSTR GetPath(ULONG Index) { return GetString(Index); }
@@ -69,10 +69,10 @@ public:
 	auto ParentCommandline() { return GetString(emMSGFieldParentCommandline); }
 	auto ParentCreateTime() { return GetTime(emMSGFieldParentCreateTime); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchCommandline(LPCWSTR Pattern) { return IsMatch(emMSGFieldCommandline, Pattern); }
-	bool IsMatchParentPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldParentPath, Pattern); }
-	bool IsMatchParentCommandline(LPCWSTR Pattern) { return IsMatch(emMSGFieldParentCommandline, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchCommandline(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldCommandline, Pattern, IgnoreCase); }
+	bool IsMatchParentPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldParentPath, Pattern, IgnoreCase); }
+	bool IsMatchParentCommandline(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldParentCommandline, Pattern, IgnoreCase); }
 };
 class cxMSGProcessExit : public MonitorMessage
 {
@@ -91,7 +91,7 @@ public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 	auto ProcessId() { return GetULONG(emMSGFieldProcessId); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGProcessOpen : public MonitorMessage
 {
@@ -116,7 +116,7 @@ public:
 	auto DesiredAccess() { return GetProcessAccess(emMSGFieldDesiredAccess); }
 	auto Duplicate() { return GetBool(emMSGFieldDuplicate); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGThreadCreate : public MonitorMessage
 {
@@ -141,7 +141,7 @@ public:
 	auto StartAddress() { return GetULONGLONG(emMSGFieldStartAddress); }
 	auto RemoteThread() { return GetBool(emMSGFieldRemoteThread); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGThreadExit : public MonitorMessage
 {
@@ -162,7 +162,7 @@ public:
 	auto ProcessId() { return GetULONG(emMSGFieldProcessId); }
 	auto ThreadId() { return GetULONG(emMSGFieldThreadId); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGThreadOpen : public MonitorMessage
 {
@@ -189,7 +189,7 @@ public:
 	auto Duplicate() { return GetBool(emMSGFieldDuplicate); }
 	auto ThreadId() { return GetULONG(emMSGFieldThreadId); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGImageLoad : public MonitorMessage
 {
@@ -214,7 +214,7 @@ public:
 	auto ImageSize() { return GetULONGLONG(emMSGFieldImageSize); }
 	auto IsKernelImage() { return GetBool(emMSGFieldIsKernelImage); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGProcessStart : public MonitorMessage
 {
@@ -245,10 +245,10 @@ public:
 	auto ParentCommandline() { return GetString(emMSGFieldParentCommandline); }
 	auto ParentCreateTime() { return GetTime(emMSGFieldParentCreateTime); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchCommandline(LPCWSTR Pattern) { return IsMatch(emMSGFieldCommandline, Pattern); }
-	bool IsMatchParentPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldParentPath, Pattern); }
-	bool IsMatchParentCommandline(LPCWSTR Pattern) { return IsMatch(emMSGFieldParentCommandline, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchCommandline(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldCommandline, Pattern, IgnoreCase); }
+	bool IsMatchParentPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldParentPath, Pattern, IgnoreCase); }
+	bool IsMatchParentCommandline(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldParentCommandline, Pattern, IgnoreCase); }
 };
 class cxMSGThreadStart : public MonitorMessage
 {
@@ -273,7 +273,7 @@ public:
 	auto StartAddress() { return GetULONGLONG(emMSGFieldStartAddress); }
 	auto RemoteThread() { return GetBool(emMSGFieldRemoteThread); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFileCreate : public MonitorMessage
 {
@@ -300,7 +300,7 @@ public:
 	auto CreateDisposition() { return GetFileDisposition(emMSGFieldCreateDisposition); }
 	auto CreateOptions() { return GetFileOptions(emMSGFieldCreateOptions); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFilePostCreate : public MonitorMessage
 {
@@ -329,7 +329,7 @@ public:
 	auto CreateOptions() { return GetFileOptions(emMSGFieldCreateOptions); }
 	auto Information() { return GetULONG(emMSGFieldInformation); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFileQueryOpen : public MonitorMessage
 {
@@ -346,7 +346,7 @@ public:
 public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFilePostQueryOpen : public MonitorMessage
 {
@@ -375,7 +375,7 @@ public:
 	auto FileSize() { return GetULONGLONG(emMSGFieldFileSize); }
 	auto FileAttributes() { return GetFileAttributes(emMSGFieldFileAttributes); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFileCleanup : public MonitorMessage
 {
@@ -394,7 +394,7 @@ public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 	auto Information() { return GetULONG(emMSGFieldInformation); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFileCreateSection : public MonitorMessage
 {
@@ -413,7 +413,7 @@ public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 	auto PageProtection() { return GetFilePageProtection(emMSGFieldPageProtection); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFilePostCreateSection : public MonitorMessage
 {
@@ -432,7 +432,7 @@ public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 	auto PageProtection() { return GetFilePageProtection(emMSGFieldPageProtection); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFileRead : public MonitorMessage
 {
@@ -455,7 +455,7 @@ public:
 	auto Offset() { return GetULONGLONG(emMSGFieldOffset); }
 	auto Buffer() { return GetULONGLONG(emMSGFieldBuffer); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFilePostRead : public MonitorMessage
 {
@@ -480,7 +480,7 @@ public:
 	auto Buffer() { return GetULONGLONG(emMSGFieldBuffer); }
 	auto ReturnLength() { return GetULONG(emMSGFieldReturnLength); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFileWrite : public MonitorMessage
 {
@@ -505,7 +505,7 @@ public:
 	auto Buffer() { return GetULONGLONG(emMSGFieldBuffer); }
 	auto Data() { return GetBinary(emMSGFieldData); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFilePostWrite : public MonitorMessage
 {
@@ -532,7 +532,7 @@ public:
 	auto Data() { return GetBinary(emMSGFieldData); }
 	auto ReturnLength() { return GetULONG(emMSGFieldReturnLength); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFileCreateHardLink : public MonitorMessage
 {
@@ -553,8 +553,8 @@ public:
 	auto LinkPath() { return GetPath(emMSGFieldLinkPath); }
 	auto ReplaceIfExists() { return GetBool(emMSGFieldReplaceIfExists); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchLinkPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldLinkPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchLinkPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldLinkPath, Pattern, IgnoreCase); }
 };
 class cxMSGFilePostCreateHardLink : public MonitorMessage
 {
@@ -575,8 +575,8 @@ public:
 	auto LinkPath() { return GetPath(emMSGFieldLinkPath); }
 	auto ReplaceIfExists() { return GetBool(emMSGFieldReplaceIfExists); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchLinkPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldLinkPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchLinkPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldLinkPath, Pattern, IgnoreCase); }
 };
 class cxMSGFileRename : public MonitorMessage
 {
@@ -597,8 +597,8 @@ public:
 	auto NewPath() { return GetPath(emMSGFieldNewPath); }
 	auto ReplaceIfExists() { return GetBool(emMSGFieldReplaceIfExists); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchNewPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldNewPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchNewPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldNewPath, Pattern, IgnoreCase); }
 };
 class cxMSGFilePostRename : public MonitorMessage
 {
@@ -619,8 +619,8 @@ public:
 	auto NewPath() { return GetPath(emMSGFieldNewPath); }
 	auto ReplaceIfExists() { return GetBool(emMSGFieldReplaceIfExists); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchNewPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldNewPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchNewPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldNewPath, Pattern, IgnoreCase); }
 };
 class cxMSGFileDelete : public MonitorMessage
 {
@@ -637,7 +637,7 @@ public:
 public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFilePostDelete : public MonitorMessage
 {
@@ -654,7 +654,7 @@ public:
 public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFileSetSize : public MonitorMessage
 {
@@ -675,7 +675,7 @@ public:
 	auto Size() { return GetULONGLONG(emMSGFieldSize); }
 	auto SizeType() { return GetULONG(emMSGFieldSizeType); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFilePostSetSize : public MonitorMessage
 {
@@ -696,7 +696,7 @@ public:
 	auto Size() { return GetULONGLONG(emMSGFieldSize); }
 	auto SizeType() { return GetULONG(emMSGFieldSizeType); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFileSetBasicInfo : public MonitorMessage
 {
@@ -723,7 +723,7 @@ public:
 	auto ChangeTime() { return GetTime(emMSGFieldChangeTime); }
 	auto FileAttributes() { return GetFileAttributes(emMSGFieldFileAttributes); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFilePostSetBasicInfo : public MonitorMessage
 {
@@ -750,7 +750,7 @@ public:
 	auto ChangeTime() { return GetTime(emMSGFieldChangeTime); }
 	auto FileAttributes() { return GetFileAttributes(emMSGFieldFileAttributes); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGFileFindFile : public MonitorMessage
 {
@@ -771,8 +771,8 @@ public:
 	auto FindName() { return GetPath(emMSGFieldFindName); }
 	auto RestartScan() { return GetBool(emMSGFieldRestartScan); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchFindName(LPCWSTR Pattern) { return IsMatch(emMSGFieldFindName, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchFindName(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldFindName, Pattern, IgnoreCase); }
 };
 class cxMSGFilePostFindFile : public MonitorMessage
 {
@@ -807,9 +807,9 @@ public:
 	auto FileSize() { return GetULONGLONG(emMSGFieldFileSize); }
 	auto FileAttributes() { return GetFileAttributes(emMSGFieldFileAttributes); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchFindName(LPCWSTR Pattern) { return IsMatch(emMSGFieldFindName, Pattern); }
-	bool IsMatchFileName(LPCWSTR Pattern) { return IsMatch(emMSGFieldFileName, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchFindName(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldFindName, Pattern, IgnoreCase); }
+	bool IsMatchFileName(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldFileName, Pattern, IgnoreCase); }
 };
 class cxMSGRegCreateKey : public MonitorMessage
 {
@@ -830,7 +830,7 @@ public:
 	auto Options() { return GetRegOptions(emMSGFieldOptions); }
 	auto DesiredAccess() { return GetRegAccess(emMSGFieldDesiredAccess); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGRegPostCreateKey : public MonitorMessage
 {
@@ -853,7 +853,7 @@ public:
 	auto DesiredAccess() { return GetRegAccess(emMSGFieldDesiredAccess); }
 	auto Disposition() { return GetULONG(emMSGFieldDisposition); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGRegOpenKey : public MonitorMessage
 {
@@ -874,7 +874,7 @@ public:
 	auto Options() { return GetRegOptions(emMSGFieldOptions); }
 	auto DesiredAccess() { return GetRegAccess(emMSGFieldDesiredAccess); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGRegPostOpenKey : public MonitorMessage
 {
@@ -895,7 +895,7 @@ public:
 	auto Options() { return GetRegOptions(emMSGFieldOptions); }
 	auto DesiredAccess() { return GetRegAccess(emMSGFieldDesiredAccess); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGRegDeleteKey : public MonitorMessage
 {
@@ -912,7 +912,7 @@ public:
 public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGRegPostDeleteKey : public MonitorMessage
 {
@@ -929,7 +929,7 @@ public:
 public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGRegRenameKey : public MonitorMessage
 {
@@ -948,8 +948,8 @@ public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 	auto NewName() { return GetString(emMSGFieldNewName); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchNewName(LPCWSTR Pattern) { return IsMatch(emMSGFieldNewName, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchNewName(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldNewName, Pattern, IgnoreCase); }
 };
 class cxMSGRegPostRenameKey : public MonitorMessage
 {
@@ -968,8 +968,8 @@ public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 	auto NewName() { return GetString(emMSGFieldNewName); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchNewName(LPCWSTR Pattern) { return IsMatch(emMSGFieldNewName, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchNewName(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldNewName, Pattern, IgnoreCase); }
 };
 class cxMSGRegEnumKey : public MonitorMessage
 {
@@ -992,7 +992,7 @@ public:
 	auto InformationClass() { return GetULONG(emMSGFieldInformationClass); }
 	auto InformationLength() { return GetULONG(emMSGFieldInformationLength); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGRegPostEnumKey : public MonitorMessage
 {
@@ -1019,7 +1019,7 @@ public:
 	auto ResultLength() { return GetULONG(emMSGFieldResultLength); }
 	auto Information() { return GetBinary(emMSGFieldInformation); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 };
 class cxMSGRegLoadKey : public MonitorMessage
 {
@@ -1038,8 +1038,8 @@ public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 	auto FilePath() { return GetString(emMSGFieldFilePath); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchFilePath(LPCWSTR Pattern) { return IsMatch(emMSGFieldFilePath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchFilePath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldFilePath, Pattern, IgnoreCase); }
 };
 class cxMSGRegPostLoadKey : public MonitorMessage
 {
@@ -1058,8 +1058,8 @@ public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 	auto FilePath() { return GetString(emMSGFieldFilePath); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchFilePath(LPCWSTR Pattern) { return IsMatch(emMSGFieldFilePath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchFilePath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldFilePath, Pattern, IgnoreCase); }
 };
 class cxMSGRegReplaceKey : public MonitorMessage
 {
@@ -1080,9 +1080,9 @@ public:
 	auto OldFilePath() { return GetString(emMSGFieldOldFilePath); }
 	auto NewFilePath() { return GetString(emMSGFieldNewFilePath); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchOldFilePath(LPCWSTR Pattern) { return IsMatch(emMSGFieldOldFilePath, Pattern); }
-	bool IsMatchNewFilePath(LPCWSTR Pattern) { return IsMatch(emMSGFieldNewFilePath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchOldFilePath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldOldFilePath, Pattern, IgnoreCase); }
+	bool IsMatchNewFilePath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldNewFilePath, Pattern, IgnoreCase); }
 };
 class cxMSGRegPostReplaceKey : public MonitorMessage
 {
@@ -1103,9 +1103,9 @@ public:
 	auto OldFilePath() { return GetString(emMSGFieldOldFilePath); }
 	auto NewFilePath() { return GetString(emMSGFieldNewFilePath); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchOldFilePath(LPCWSTR Pattern) { return IsMatch(emMSGFieldOldFilePath, Pattern); }
-	bool IsMatchNewFilePath(LPCWSTR Pattern) { return IsMatch(emMSGFieldNewFilePath, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchOldFilePath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldOldFilePath, Pattern, IgnoreCase); }
+	bool IsMatchNewFilePath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldNewFilePath, Pattern, IgnoreCase); }
 };
 class cxMSGRegDeleteValue : public MonitorMessage
 {
@@ -1124,8 +1124,8 @@ public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 	auto ValueName() { return GetString(emMSGFieldValueName); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchValueName(LPCWSTR Pattern) { return IsMatch(emMSGFieldValueName, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchValueName(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldValueName, Pattern, IgnoreCase); }
 };
 class cxMSGRegPostDeleteValue : public MonitorMessage
 {
@@ -1144,8 +1144,8 @@ public:
 	auto Path() { return GetPath(emMSGFieldPath); }
 	auto ValueName() { return GetString(emMSGFieldValueName); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchValueName(LPCWSTR Pattern) { return IsMatch(emMSGFieldValueName, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchValueName(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldValueName, Pattern, IgnoreCase); }
 };
 class cxMSGRegSetValue : public MonitorMessage
 {
@@ -1168,8 +1168,8 @@ public:
 	auto DataType() { return GetRegType(emMSGFieldDataType); }
 	auto Data() { return GetBinary(emMSGFieldData); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchValueName(LPCWSTR Pattern) { return IsMatch(emMSGFieldValueName, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchValueName(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldValueName, Pattern, IgnoreCase); }
 };
 class cxMSGRegPostSetValue : public MonitorMessage
 {
@@ -1192,8 +1192,8 @@ public:
 	auto DataType() { return GetRegType(emMSGFieldDataType); }
 	auto Data() { return GetBinary(emMSGFieldData); }
 
-	bool IsMatchPath(LPCWSTR Pattern) { return IsMatch(emMSGFieldPath, Pattern); }
-	bool IsMatchValueName(LPCWSTR Pattern) { return IsMatch(emMSGFieldValueName, Pattern); }
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchValueName(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldValueName, Pattern, IgnoreCase); }
 };
 class cxMSGSocketCreate : public MonitorMessage
 {

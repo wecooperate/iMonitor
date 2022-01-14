@@ -52,7 +52,7 @@ interface IMonitorMessage
 	virtual LPCWSTR			GetFormatedString	(ULONG Index) = 0;
 	virtual Binary			GetBinary			(ULONG Index) = 0;
 
-	virtual bool			IsMatch				(ULONG Index, LPCWSTR Pattern) = 0;
+	virtual bool			IsMatch				(ULONG Index, LPCWSTR Pattern, bool IgnoreCase = true) = 0;
 
 	virtual bool			IsWaiting			(void) = 0;
 	virtual bool			SetAction			(const cxMSGAction& Action) = 0;
@@ -98,6 +98,13 @@ public:
 	MonitorManager(void)
 		: m_MonitorModule(NULL)
 	{
+	}
+
+	~MonitorManager(void)
+	{
+		Stop();
+
+		m_Monitor = NULL;
 	}
 
 	HRESULT Start(IMonitorCallback* Callback, LPCTSTR Path = MONITOR_MODULE_NAME)
