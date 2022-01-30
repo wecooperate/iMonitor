@@ -61,4 +61,4 @@ Excellent people, do professional things.
 
 wecooperate is a company dedicated to providing basic services and integrated management platform for enterprise management, striving to become the entrance of enterprise management and promoting the standardization and digitization of enterprise management.
 
-If you have business agency, business cooperation, function customization and other needs, [Contact Us](mailto://iMonitor@qq.com)
+If you have business agency, business cooperation, function customization and other needs, [Contact Us](mailto://admin@iMonitorSDK.com)
