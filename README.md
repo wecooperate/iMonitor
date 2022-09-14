@@ -1,70 +1,59 @@
-[English](./README_EN.md) 
+[中文](./README_zh.md)
 
-iMonitor（冰镜 - 终端行为分析系统）是一款基于[iMonitorSDK](https://github.com/wecooperate/iMonitorSDK)的开源终端行为监控分析软件。
+## Introduction
 
-提供了对进程、文件、注册表、网络等系统行为的监控。支持扩展和脚本，可以轻易定制和添加更多功能。可以用于病毒分析、软件逆向、入侵检测，EDR等。
+iMonitor (Endpoint Behavior Analysis System) is a endpoint behavior monitoring and analysis software based on [iMonitorSDK](https://iMonitorSDK.com).
 
-## 一些特点
+Provides monitoring of system behaviors such as processes, files, registry, and networks. Support extensions and scripts, you can easily customize and add more functions. It can be used for virus analysis, software reverse engineering, intrusion detection, EDR, etc.
 
--   开源
--   支持Win7到Win11的32位、64位系统（因为Qt用了比较新的版本不支持XP了，需要支持的可以自行换成支持XP的Qt版本）
--   支持丰富的行为监控，支持进程打开事件、支持socket的各种操作事件
--   支持按每个事件字段的过滤条件，支持堆栈模块的过滤条件
--   **所有iMonitor监控到的行为，都可以通过[iMonitorSDK](https://github.com/wecooperate/iMonitorSDK)、[iDefender](https://github.com/wecooperate/iDefender)来拦截阻止**
--   **支持脚本化和应用市场，可以无限扩展和定制功能（待支持）**
--   **多方平台集成（待支持）**
+## Screenshots
+![](./doc/all.gif)
 
-## 源码编译
+![](./doc/main_en.png)
+![](./doc/address_en.png)
+![](./doc/detail.png)
 
--   需要VS2019及以上环境
--   需要CMake 3.10 之后的版本
--   需要安装Qt5.12
--   执行目录下的build.bat即可 （此步骤会提示设置QT的安装路径，按提示设置环境变量）
+## Version
 
-## 软件截图
+### 2.0（2022.09.14）
 
-![normal](./doc/normal.png)
+- Add the management of display columns, you can customize the data to be displayed
 
-事件详情
-![](./doc/bin.png)
-![process](./doc/process.png)
-![callstack](./doc/callstack.png)
+- Added highlight function, which can highlight key data
 
-Win11
-![color](./doc/color.png)
+- Supports grouping and merging statistics, which greatly improves the convenience of analysis (similar to the GROUP BY effect in SQL)
 
-## 后续计划
+- Add workspace management, different analysis scenarios can be quickly switched through the workspace
 
-- 基本功能完善
+- Added find function
 
-  - [ ] 支持数据的保存、加载
-  - [ ] 支持规则的保存、规则列表
-  - [ ] 支持进程、文件、注册表、网络的信息汇总
-  - [ ] 支持搜索、快速过滤、标签
-  - [ ] 列支持自定义、编辑、显示隐藏
-  - [ ] 完善QSS、国际化
-- 插件扩展
+- Add multi-language support
 
-  - [ ] 支持插件扩展
-  - [ ] 支持脚本扩展
-  - [ ] 关键插件
-    - [ ] 过滤插件：支持更加复杂的条件过滤
-    - [ ] 显示插件：添加更多的信息展示
-    - [ ] 行为插件：可以分析每一个路径的含义
-    - [ ] 安全插件：根据行为的权值，智能分析出病毒行为
-    - [ ] 逆向插件：自动过滤掉系统路径，快速分析一个软件存储修改哪些数据
-  - [ ] 开发平台 - 应用市场的支持
-- 检测分析与响应
+- Add more event support
 
-  - [ ] 结合iDefender主动防御系统，快速禁用检测到的行为
-  - [ ] 数据支持上报集成到EDR、SOC、SIEM等平台
+  - Add support for named pipes
+  - Add HTTP, HTTPS support
 
-## 关于我们
+- Add plugin support
 
-优秀的人，做专业的事。
+  - Support for custom columns
+  - Support custom rule matching
+  - Support interface interaction (requires Qt dependency)
 
-创信长荣科技的团队来自国内头部互联网公司，具备十多年安全底层开发经验、架构设计能力，对企业安全业务有着深刻的理解。 是一家致力于为企业管理提供基础服务、一体化管理平台，力争成为企业管理入口，促进企业管理标准化、数字化的企业。
+- Built-in some plugins
 
+  - Add IP address attribution column
+  - Add a column of path information that can be displayed by custom rules
+  - Added column for process sensitive behavior description
+  - Added quick rule matching if it is a document
 
+- Miscellaneous
 
-**有任何商业合作、功能定制请 [联系我们](mailto://admin@iMonitorSDK.com)**
+  - Added support for discarding filtered rules
+  - Support switching between highlighting rules and filtering rules
+  - The method of adding incremental filtering to rule matching, no longer requires full matching when adding rules
+  - Add regular expression support for matching rules
+  - Columns and rules support modifying default values
+  - Add installation package
+  
+  ### 1.0（2022.03.14）

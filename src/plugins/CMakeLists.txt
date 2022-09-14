@@ -1,0 +1,12 @@
+set(CURRENT_PROJECT_FOLDER plugins)
+
+if(OS_64)
+set(PLATFORM_DIR 64)
+else()
+set(PLATFORM_DIR 32)
+endif()
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG "${PROJECT_SOURCE_DIR}/bin/${PLATFORM_DIR}/Debug/plugins") 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE "${PROJECT_SOURCE_DIR}/bin/${PLATFORM_DIR}/Release/plugins") 
+
+add_subdirectory_all()

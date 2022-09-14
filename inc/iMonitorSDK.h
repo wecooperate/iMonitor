@@ -13,6 +13,7 @@
 #include <tchar.h>
 #include <windows.h>
 #include <atlbase.h>
+#include <atlstr.h>
 //******************************************************************************
 #include "iMonitor.h"
 #include "iMonitorSDKExtension.h"
@@ -22,6 +23,8 @@
 #else
 #define MONITOR_MODULE_NAME _T("iMonitor64.dll")
 #endif
+//******************************************************************************
+#define IMONITOR_IID "{51237525-2811-4BE2-A6A3-D8889E0D0CA0}"
 //******************************************************************************
 //
 //	interface
@@ -75,12 +78,13 @@ interface IMonitorCallback
 	virtual void			OnCallback			(IMonitorMessage* Message) = 0;
 };
 //******************************************************************************
-interface __declspec (uuid("51237525-2811-4BE2-A6A3-D8889E0D0CA0")) IMonitorManager : public IUnknown
+interface __declspec (uuid(IMONITOR_IID)) IMonitorManager : public IUnknown
 {
 	virtual HRESULT			Start				(IMonitorCallbackInternal* Callback) = 0;
 	virtual HRESULT			Start				(IMonitorCallback* Callback) = 0;
 	virtual HRESULT			Control				(PVOID Data, ULONG Length, PVOID OutData = NULL, ULONG OutLength = 0, PULONG ReturnLength = NULL) = 0;
 	virtual HRESULT			Stop				(void) = 0;
+	virtual HRESULT			UnloadDriver		(void) = 0;
 
 	virtual	HRESULT			CreateRuleEngine	(LPCWSTR Path, IMonitorRuleEngine** Engine) = 0;
 	virtual HRESULT			CreateAgentEngine	(ULONG MaxThread, IMonitorAgentEngine** Engine) = 0;
@@ -139,6 +143,14 @@ public:
 			return E_UNEXPECTED;
 
 		return m_Monitor->Stop();
+	}
+
+	HRESULT UnloadDriver(void)
+	{
+		if (!m_Monitor)
+			return E_UNEXPECTED;
+
+		return m_Monitor->UnloadDriver();
 	}
 
 public:

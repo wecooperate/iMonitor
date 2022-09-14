@@ -39,12 +39,19 @@ interface __declspec(uuid("51237525-2811-4BE2-A6A3-D8889E0D0CA1")) IMonitorRuleE
 //******************************************************************************
 interface IMonitorAgentChannel
 {
+	struct Binary {
+		PVOID				Data;
+		ULONG				Length;
+	};
+
 	struct Address {
 		ULONG				IP;
 		USHORT				Port;
 	};
 
 	virtual ULONG			LocalGetProcessId	(void) = 0;
+	virtual ULONG			LocalGetThreadId	(void) = 0;
+	virtual Binary			LocalGetCallstack	(void) = 0;
 	virtual Address			LocalGetAddress		(void) = 0;
 	virtual void			LocalSetAutoSend	(bool Enable) = 0;
 	virtual void			LocalSetAutoReceive	(bool Enable) = 0;

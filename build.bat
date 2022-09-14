@@ -14,8 +14,6 @@ Set QT_DIR64=D:\Qt\Qt5.12.11\5.12.11\msvc2017_64\lib\cmake\Qt5
 Echo.&Echo  1.GenerateSolution
 Echo.&Echo  2.BuildDebug
 Echo.&Echo  3.BuildRelease
-Echo.&Echo  4.Windeployqt
-Echo.&Echo  5.Format
 Echo.&Echo.
 
 set /p a=Input Number:
@@ -23,16 +21,14 @@ If Not "%a%"=="" Set a=%a:~0,1%
 If "%a%"=="1" Goto GenerateSolution
 If "%a%"=="2" Goto BuildDebug
 If "%a%"=="3" Goto BuildRelease
-If "%a%"=="4" Goto Windeployqt
-If "%a%"=="5" Goto Format
 Exit
 
 :GenerateSolution
 Set QT_DIR=%QT_DIR64%
-cmake %vcpkg_param% -G "Visual Studio 16 2019" -A "x64" -T "v142" CMakeLists.txt -B build/64 -DQT_ENABLE_TRANSLATION=1
+cmake %vcpkg_param% -G "Visual Studio 17 2022" -A "x64" -T "v142" CMakeLists.txt -B build/64 -DQT_ENABLE_TRANSLATION=1
 
 Set QT_DIR=%QT_DIR32%
-cmake %vcpkg_param% -G "Visual Studio 16 2019" -A "Win32" -T "v142" CMakeLists.txt -B build/32 -DQT_ENABLE_TRANSLATION=1
+cmake %vcpkg_param% -G "Visual Studio 17 2022" -A "Win32" -T "v142" CMakeLists.txt -B build/32 -DQT_ENABLE_TRANSLATION=1
 Goto Menu
 
 :BuildDebug
@@ -43,13 +39,4 @@ Goto Menu
 :BuildRelease
 cmake --build build/64 --config Release
 cmake --build build/32 --config Release
-Goto Menu
-
-:Windeployqt
-windeployqt.exe bin\64\iMonitor.exe
-windeployqt.exe bin\32\iMonitor.exe
-Goto Menu
-
-:Format
-node tools/format.js
 Goto Menu

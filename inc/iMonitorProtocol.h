@@ -1195,6 +1195,46 @@ public:
 	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
 	bool IsMatchValueName(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldValueName, Pattern, IgnoreCase); }
 };
+class cxMSGRegQueryValue : public MonitorMessage
+{
+public:
+	enum {
+		emMSGFieldCallstack,
+		emMSGFieldCurrentProcessCreateTime,
+		emMSGFieldCurrentProcessName,
+		emMSGFieldCurrentProcessPath,
+		emMSGFieldCurrentProcessCommandline,
+		emMSGFieldPath,
+		emMSGFieldValueName,
+	};
+
+public:
+	auto Path() { return GetPath(emMSGFieldPath); }
+	auto ValueName() { return GetString(emMSGFieldValueName); }
+
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchValueName(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldValueName, Pattern, IgnoreCase); }
+};
+class cxMSGRegPostQueryValue : public MonitorMessage
+{
+public:
+	enum {
+		emMSGFieldCallstack,
+		emMSGFieldCurrentProcessCreateTime,
+		emMSGFieldCurrentProcessName,
+		emMSGFieldCurrentProcessPath,
+		emMSGFieldCurrentProcessCommandline,
+		emMSGFieldPath,
+		emMSGFieldValueName,
+	};
+
+public:
+	auto Path() { return GetPath(emMSGFieldPath); }
+	auto ValueName() { return GetString(emMSGFieldValueName); }
+
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchValueName(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldValueName, Pattern, IgnoreCase); }
+};
 class cxMSGSocketCreate : public MonitorMessage
 {
 public:
@@ -1604,6 +1644,45 @@ public:
 	auto LocalIP() { return GetSocketIP(emMSGFieldLocalIP); }
 	auto LocalPort() { return GetSocketPort(emMSGFieldLocalPort); }
 
+};
+class cxMSGHTTPRequest : public MonitorMessage
+{
+public:
+	enum {
+		emMSGFieldCallstack,
+		emMSGFieldCurrentProcessCreateTime,
+		emMSGFieldCurrentProcessName,
+		emMSGFieldCurrentProcessPath,
+		emMSGFieldCurrentProcessCommandline,
+		emMSGFieldPath,
+		emMSGFieldIP,
+		emMSGFieldPort,
+		emMSGFieldHost,
+		emMSGFieldUri,
+		emMSGFieldHeader,
+		emMSGFieldData,
+		emMSGFieldStatus,
+		emMSGFieldResponseHeader,
+		emMSGFieldResponseData,
+	};
+
+public:
+	auto Path() { return GetString(emMSGFieldPath); }
+	auto IP() { return GetSocketIP(emMSGFieldIP); }
+	auto Port() { return GetSocketPort(emMSGFieldPort); }
+	auto Host() { return GetString(emMSGFieldHost); }
+	auto Uri() { return GetString(emMSGFieldUri); }
+	auto Header() { return GetString(emMSGFieldHeader); }
+	auto Data() { return GetBinary(emMSGFieldData); }
+	auto Status() { return GetULONG(emMSGFieldStatus); }
+	auto ResponseHeader() { return GetString(emMSGFieldResponseHeader); }
+	auto ResponseData() { return GetBinary(emMSGFieldResponseData); }
+
+	bool IsMatchPath(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldPath, Pattern, IgnoreCase); }
+	bool IsMatchHost(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldHost, Pattern, IgnoreCase); }
+	bool IsMatchUri(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldUri, Pattern, IgnoreCase); }
+	bool IsMatchHeader(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldHeader, Pattern, IgnoreCase); }
+	bool IsMatchResponseHeader(LPCWSTR Pattern, bool IgnoreCase = true) { return IsMatch(emMSGFieldResponseHeader, Pattern, IgnoreCase); }
 };
 //******************************************************************************
 #endif

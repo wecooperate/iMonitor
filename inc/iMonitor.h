@@ -10,7 +10,8 @@
 //******************************************************************************
 // clang-format off
 //******************************************************************************
-#define MONITOR_VERSION                       1040
+#define MONITOR_VERSION                       2000
+#define MONITOR_LICENSE_VERSION               1
 #define MONITOR_MAX_BUFFER                    260
 //******************************************************************************
 #ifndef BIT
@@ -29,8 +30,21 @@ enum emMSGType
     emMSGRegistry                             = 300,
     emMSGSocket                               = 400,
     emMSGWFP                                  = 500,
-    emMSGSystem                               = 600,
+    emMSGHTTP                                 = 600,
     emMSGMax                                  = 1000,
+};
+//******************************************************************************
+#define MSG_GET_GROUP(type) (type / 100)
+
+enum emMSGGroup {
+	emMSGGroupInternal                        = 0,
+	emMSGGroupProcess                         = 1,
+	emMSGGroupFile                            = 2,
+	emMSGGroupRegistry                        = 3,
+	emMSGGroupSocket                          = 4,
+	emMSGGroupWFP                             = 5,
+    emMSGGroupHTTP                            = 6,
+	emMSGGroupMax,
 };
 //******************************************************************************
 enum emMSGTypeInternal
@@ -101,6 +115,8 @@ enum emMSGTypeRegistry
     emMSGRegPostDeleteValue,
     emMSGRegSetValue,
     emMSGRegPostSetValue,
+    emMSGRegQueryValue,
+    emMSGRegPostQueryValue,
 };
 //******************************************************************************
 enum emMSGTypeSocket
@@ -131,6 +147,12 @@ enum emMSGTypeWFP
     emMSGWFPUdpConnect,
     emMSGWFPTcpAccept,
     emMSGWFPUdpAccept,
+};
+//******************************************************************************
+enum emMSGTypeHTTP
+{
+    emMSGHTTPRequest = emMSGHTTP + 1,
+    emMSGHTTPRequestEnd = emMSGHTTPRequest + 100,
 };
 //******************************************************************************
 enum emMSGConfig
@@ -167,7 +189,7 @@ enum emMSGDataType
     emMSGDataString                            = 0x30000,
     emMSGDataPath                              = 0x40000,
     emMSGDataBinary                            = 0x50000,
-    emMSGDataCallstatck                        = 0x60000,
+    emMSGDataCallstack                         = 0x60000,
 
 #define MSG_GET_BASE_TYPE(type)                (type & 0xFFFF0000)
 
@@ -297,6 +319,7 @@ struct cxMSGAction
 struct cxMSGUserHeader 
 {
     ULONG                Type;
+    ULONG                LicenseVersion                = MONITOR_LICENSE_VERSION;
 };
 //******************************************************************************
 template<ULONG TYPE, typename T = void>
