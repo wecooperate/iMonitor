@@ -10,10 +10,24 @@ Provides monitoring of system behaviors such as processes, files, registry, and 
 ![](./doc/all.gif)
 
 ![](./doc/main_en.png)
+
 ![](./doc/address_en.png)
+
 ![](./doc/detail.png)
 
+![](./doc/snapshot.png)
+
+![](./doc/dll.png)
+
 ## Version
+### 2.1（2022.10.5）
+- Added event snapshot support
+  - Snapshot support sorting
+- Add dynamic library load analysis (Properties - Dependency)
+  - It can be analyzed that DLLs are lost and that DLLs are at risk of being hijacked
+- Fixed a crash caused by finding any column
+
+Thanks to sagasm for your feedback.
 
 ### 2.0（2022.09.14）
 
