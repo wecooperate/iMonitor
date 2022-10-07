@@ -21,6 +21,8 @@ const std::vector<IMessageColumn*>& GetColumns(void)
 	static std::vector<IMessageColumn*> columns = {
 		new cxMessageColumnLocalAddress(),
 		new cxMessageColumnRemoteAddress(),
+		new cxMessageColumnDir(),
+		new cxMessageColumnFilename()
 	};
 
 	return columns;
@@ -87,6 +89,48 @@ String cxMessageColumnRemoteAddress::GetString(IMessage* Message)
 		break;
 	}
 
+	return String();
+}
+//******************************************************************************
+//******************************************************************************
+cxMessageColumnFilename::cxMessageColumnFilename(void)
+	: cxMessageColumnBase(_T("File/Folder Name"), _T("File/Folder name of path"), 200)
+{
+}
+//******************************************************************************
+String cxMessageColumnFilename::GetString(IMessage* Message)
+{
+	ULONG type = Message->GetType();
+
+	if (type > emMSGProcess && type < emMSGRegistry)
+	{
+			String str;
+			str.Format(_T("%s"), Message->GetString(proto::FileQueryOpen::emFieldPath));
+			int nPos = str.ReverseFind('\\');
+			String fullName = str.Right(str.GetLength() - nPos - 1);
+			return fullName;
+	}
+	return String();
+}
+//******************************************************************************
+//******************************************************************************
+cxMessageColumnDir::cxMessageColumnDir(void)
+	: cxMessageColumnBase(_T("Dir"), _T("Directory of path"), 200)
+{
+}
+//******************************************************************************
+String cxMessageColumnDir::GetString(IMessage* Message)
+{
+	ULONG type = Message->GetType();
+
+	if (type > emMSGProcess && type < emMSGRegistry)
+	{
+		String str;
+		str.Format(_T("%s"), Message->GetString(proto::FileQueryOpen::emFieldPath));
+		int nPos = str.ReverseFind('\\');
+		String fullName = str.Left(nPos);
+		return fullName;
+	}
 	return String();
 }
 //******************************************************************************
