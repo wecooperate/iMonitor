@@ -21,6 +21,7 @@ const std::vector<IMessageColumn*>& GetColumns(void)
 	static std::vector<IMessageColumn*> columns = {
 		new cxMessageColumnLocalAddress(),
 		new cxMessageColumnRemoteAddress(),
+		new cxMessageColumnFilename()
 	};
 
 	return columns;
@@ -86,6 +87,67 @@ String cxMessageColumnRemoteAddress::GetString(IMessage* Message)
 	default:
 		break;
 	}
+
+	return String();
+}
+//******************************************************************************
+//******************************************************************************
+cxMessageColumnFilename::cxMessageColumnFilename(void)
+	: cxMessageColumnBase(_T("File/Folder Name"), _T("File/Folder name of path"), 200)
+{
+}
+//******************************************************************************
+String cxMessageColumnFilename::GetString(IMessage* Message)
+{
+	ULONG type = Message->GetType();
+
+	switch (type) 
+	{
+		//emMSGTypeProcess
+		case emMSGProcessCreate:
+		case emMSGProcessExit:
+		case emMSGProcessOpen:
+		case emMSGThreadCreate:
+		case emMSGThreadExit:
+		case emMSGThreadOpen:
+		case emMSGImageLoad:
+		case emMSGProcessStart:
+		case emMSGThreadStart:
+		//emMSGTypeFile
+		case emMSGFileCreate:
+		case emMSGFilePostCreate:
+		case emMSGFileQueryOpen:
+		case emMSGFilePostQueryOpen:
+		case emMSGFileCleanup:
+		case emMSGFilePostCleanup_nosupport:
+		case emMSGFileCreateSection:
+		case emMSGFilePostCreateSection:
+		case emMSGFileRead:
+		case emMSGFilePostRead:
+		case emMSGFileWrite:
+		case emMSGFilePostWrite:
+		case emMSGFileCreateHardLink:
+		case emMSGFilePostCreateHardLink:
+		case emMSGFileRename:
+		case emMSGFilePostRename:
+		case emMSGFileDelete:
+		case emMSGFilePostDelete:
+		case emMSGFileSetSize:
+		case emMSGFilePostSetSize:
+		case emMSGFileSetBasicInfo:
+		case emMSGFilePostSetBasicInfo:
+		case emMSGFileFindFile:
+		case emMSGFilePostFindFile:
+			{
+					String str;
+					str.Format(_T("%s"), Message->GetString(proto::FileQueryOpen::emFieldPath));
+					int nPos = str.ReverseFind('\\');
+					String fullName = str.Right(str.GetLength() - nPos - 1);
+					return fullName;
+				}
+				default:
+					break;
+			}
 
 	return String();
 }

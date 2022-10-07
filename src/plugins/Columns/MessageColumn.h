@@ -34,6 +34,15 @@ public:
 	String GetString(IMessage* Message) override;
 };
 //******************************************************************************
+class cxMessageColumnFilename : public cxMessageColumnBase
+{
+public:
+	cxMessageColumnFilename(void);
+
+public:
+	String GetString(IMessage* Message) override;
+};
+//******************************************************************************
 const std::vector<IMessageColumn*>& GetColumns(void);
 //******************************************************************************
 #endif
