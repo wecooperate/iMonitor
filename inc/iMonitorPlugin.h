@@ -46,6 +46,7 @@ typedef ULONG Color;
 typedef HICON Icon;
 //******************************************************************************
 #define IMONITOR_DEFAULT_COLOR Color(-1)
+#define IMONITOR_ABI_VERSION 1
 //******************************************************************************
 struct Binary
 {
@@ -257,6 +258,8 @@ interface IPlugin
 	};
 
 	typedef LANGID EventContextLanguageChange;
+
+	virtual ULONG			GetABIVersion		(void) { return IMONITOR_ABI_VERSION; }
 
 	virtual String			GetName				(void) = 0;
 	virtual	String			GetDescription		(void) = 0;

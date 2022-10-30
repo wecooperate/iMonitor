@@ -1,0 +1,26 @@
+{
+    "default_rules": null,
+    "rules": [
+        {
+            "column": "CurrentProcessName",
+            "enable": true,
+            "include": true,
+            "operator": 11,
+            "value": "navicat.exe"
+        },
+        {
+            "column": "Type",
+            "enable": true,
+            "include": true,
+            "operator": 11,
+            "value": "SetValue"
+        },
+        {
+            "column": "Path",
+            "enable": true,
+            "include": false,
+            "operator": 19,
+            "value": "Sogou"
+        }
+    ]
+}

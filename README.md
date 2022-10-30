@@ -19,8 +19,22 @@ Provides monitoring of system behaviors such as processes, files, registry, and 
 
 ![](./doc/dll.png)
 
+![](./doc/script.png)
+
 ## Version
+### 2.2.0（2022.10.30）
+
+- **Add scripting support** (you can use scripts to extend columns, customize matchers) Detailed reference [Script Development Guide](ttps://imonitorsdk.com/imonitor/script)
+- Optimized several user experiences
+- Fixed some minor issues
+
+### 2.1.1（2022.10.7）
+
+- Adjust the priority of grouping and filtering (previously grouped and then filtered, now filtered before grouping)
+- Fixed the issue where selecting columns caused the crash
+
 ### 2.1（2022.10.5）
+
 - Added event snapshot support
   - Snapshot support sorting
 - Add dynamic library load analysis (Properties - Dependency)
